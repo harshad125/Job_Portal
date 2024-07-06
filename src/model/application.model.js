@@ -1,12 +1,12 @@
 import mongoose, { Schema } from "mongoose";
-import jwt from "jsonwebtoken"
-import bcrypt from "bcrypt"
+
 
 const ApplicationSchema = new Schema(
     {
         status: {
             type: String,
             enum: ['Approved', 'Pending', 'Reject'],
+            default:"Pending",
             required: true
         },
         resume: {
@@ -14,7 +14,8 @@ const ApplicationSchema = new Schema(
             required: true
         },
         workExperience: {
-            type: String
+            company: { type: String },
+            year: { type: Number },
         },
         projectLink: {
             type: String,
