@@ -3,9 +3,6 @@ import { ApiError } from "../utils/ApiError.js"
 import { User } from "../model/user.model.js"
 import { deleteOnCloudinary, uploadOnCloudinary } from "../utils/cloudinary.js"
 import { ApiResponse } from "../utils/ApiResponse.js";
-import jwt from "jsonwebtoken"
-import mongoose from "mongoose";
-import { Result, body, validationResult } from 'express-validator'
 import generateToken from "../utils/generateToken.js";
 import { userProfile } from "../model/userProfile.model.js";
 import { sendEmail } from "../utils/emailSender.js";
@@ -108,7 +105,7 @@ const loginUser = asyncHandler(async (req, res) => {
         httpOnly: true,
         secure: true
     }
-    sendEmail(email, "Login to application", "you have successfully login to job portal.")
+    // sendEmail(email, "Login to application", "you have successfully login to job portal.")
     return res
         .status(200)
         .cookie("accessToken", accessToken, options)

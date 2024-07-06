@@ -13,8 +13,9 @@ const JobApplicationSchema = new Schema(
             required: true
         }],
         jobSpecification: {
-            type: String,
-            required: true
+            eduction: [{ type: String }],
+            experience: [{ type: String }],
+            jobType: [{ type: String }]
         },
         location: {
             type: String,

@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser"
 import userRouter from './routes/user.route.js'
 import session from "express-session"
 import projectRouter from "./routes/project.route.js"
+import jobRouter from "./routes/jobApplication.route.js"
 
 const app = express()
 
@@ -34,6 +35,7 @@ app.use(cookieParser())
 //routes declaration
 app.use("/api/v1/users", userRouter)
 app.use("/api/v1/projects", projectRouter)
+app.use("/api/v1/job", jobRouter)
 
 
 // http://localhost:8000/api/v1/users/register
