@@ -3,6 +3,9 @@ import cors from "cors"
 import cookieParser from "cookie-parser"
 import setRoutes from './server/routeCtrl.js'
 import tokenUtils from "./helper/jwt/tokenUtils.js"
+import errorCtrl from "./server/errorCtrl.js"
+import _ from 'lodash';
+
 
 const app = express()
 
@@ -45,9 +48,13 @@ const initilization = async () => {
 	);
 
     setRoutes(app);
-
-
     tokenUtils.setTokens();
+	app.use(errorCtrl);
+
+
+	app.listen(5000,() => {
+		console.log('server is running port number 5000')
+	})
 
 
 
