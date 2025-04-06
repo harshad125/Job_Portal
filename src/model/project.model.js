@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import { appDB } from "../server/mongoDbCtrl.js";
 
 
 const ProjectSchema = new Schema(
@@ -35,4 +36,4 @@ const ProjectSchema = new Schema(
     }
 )
 
-export const Project = mongoose.model('Project', ProjectSchema)
+export const Project = appDB.model('Project', ProjectSchema)

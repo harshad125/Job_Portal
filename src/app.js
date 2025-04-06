@@ -5,17 +5,15 @@ import setRoutes from './server/routeCtrl.js'
 import tokenUtils from "./helper/jwt/tokenUtils.js"
 import errorCtrl from "./server/errorCtrl.js"
 import _ from 'lodash';
-
+import {appDB,connectToAppDb} from './server/mongoDbCtrl.js';
 
 const app = express()
-
 
 const initilization = async () => {
     app.use(express.json())
     // app.use(express.urlencoded())
     // app.use(express.static("public"))
     // app.use(cookieParser())
-
 
     const allowedOrigins = [
 		'http://localhost:3000'
@@ -47,16 +45,16 @@ const initilization = async () => {
 		}),
 	);
 
+	await connectToAppDb();
+	app.locals.appDB = appDB;
+
     setRoutes(app);
     tokenUtils.setTokens();
 	app.use(errorCtrl);
 
-
 	app.listen(5000,() => {
 		console.log('server is running port number 5000')
 	})
-
-
 
 }
 
@@ -71,9 +69,6 @@ const initilization = async () => {
 //     }
 // }))
 
-
-
 initilization();
-
 
 export { app }

@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
+import { appDB } from "../server/mongoDbCtrl.js";
 
 const JobApplicationSchema = new Schema(
     {
@@ -60,4 +61,4 @@ const JobApplicationSchema = new Schema(
     }
 )
 
-export const JobApplication = mongoose.model('JobApplication', JobApplicationSchema)
+export const JobApplication = appDB.model('JobApplication', JobApplicationSchema)

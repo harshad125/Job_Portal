@@ -1,3 +1,4 @@
+import _ from "lodash";
 import constants from "../helper/constants.js"
 import { UnauthorizedError } from "../helper/userError.js";
 import utlis from "../helper/utlis.js";
@@ -12,8 +13,9 @@ const authenticationCtrl = async(req,res,next) => {
             }
             const isLogoutUrl = _.includes(req.url, 'auth/logout');
             const isRenewUrl = _.includes(req.url, 'auth/token/renew');
-            ignoreExpiration = isLogoutUrl || isRenewUrl;
+            const ignoreExpiration = isLogoutUrl || isRenewUrl;
             const decodeToken = utlis.verifyJwt(authToken,constants.jwt.audience.session,ignoreExpiration)
+
             if (decodeToken) {
                 req.user = {
                     id:decodeToken.id,

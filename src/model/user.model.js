@@ -1,6 +1,8 @@
 import mongoose, { Schema } from "mongoose";
 import jwt from "jsonwebtoken"
 import bcrypt from "bcryptjs"
+import { appDB } from "../server/mongoDbCtrl.js";
+
 
 const userSchema = new Schema(
     {
@@ -48,4 +50,4 @@ userSchema.methods.isPasswordCorrect = async function (password) {
     return await bcrypt.compare(password, this.password)
 }
 
-export const User = mongoose.model("User", userSchema)
+export const User = appDB.model('User',userSchema);
