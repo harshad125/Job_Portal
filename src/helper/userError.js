@@ -5,65 +5,63 @@ import { UserError } from './baseError.js';
 
 // unauthorized error
 class UnauthorizedError extends UserError {
-	constructor(param, message,  data= null) {
-		super(param, message, data);
-	}
+  constructor(param, message, data = null) {
+    super(param, message, data);
+  }
 
-	get statusCode() {
-		return HttpStatus.UNAUTHORIZED;
-	}
+  get statusCode() {
+    return HttpStatus.UNAUTHORIZED;
+  }
 }
 
 // bad request error
 class BadRequestError extends UserError {
-	constructor(param, message, data = null) {
-		super(param, message, data);
-	}
+  constructor(param, message, data = null) {
+    super(param, message, data);
+  }
 
-	get statusCode() {
-		return HttpStatus.BAD_REQUEST;
-	}
+  get statusCode() {
+    return HttpStatus.BAD_REQUEST;
+  }
 }
 
 // not found error
 class NotFoundError extends UserError {
-	constructor(param, message, data = null) {
-		super(param, message, data);
-		
-	}
+  constructor(param, message, data = null) {
+    super(param, message, data);
+  }
 
-	get statusCode() {
-		return HttpStatus.NOT_FOUND;
-	}
+  get statusCode() {
+    return HttpStatus.NOT_FOUND;
+  }
 }
 
 // unprocessable entity error
 class UnprocessableEntityError extends UserError {
-	constructor(param, message, data = null) {
-		super(param, message, data);
-		
-	}
+  constructor(param, message, data = null) {
+    super(param, message, data);
+  }
 
-	get statusCode() {
-		return HttpStatus.UNPROCESSABLE_ENTITY;
-	}
+  get statusCode() {
+    return HttpStatus.UNPROCESSABLE_ENTITY;
+  }
 }
 
 // forbidden error
 class ForbiddenError extends UserError {
-	constructor(param, message, data = null) {
-		super(param, message, data);
-	}
+  constructor(param, message, data = null) {
+    super(param, message, data);
+  }
 
-	get statusCode() {
-		return HttpStatus.FORBIDDEN;
-	}
+  get statusCode() {
+    return HttpStatus.FORBIDDEN;
+  }
 }
 
 export {
-	UnauthorizedError,
-	BadRequestError,
-	NotFoundError,
-	UnprocessableEntityError,
-	ForbiddenError
-}
+  UnauthorizedError,
+  BadRequestError,
+  NotFoundError,
+  UnprocessableEntityError,
+  ForbiddenError,
+};

@@ -1,7 +1,7 @@
-import login from "./login.js";
+import login from './login.js';
 
-class AuthCtrl{
-    static login = login
+class AuthCtrl {
+  static login = login;
 }
 
 export default AuthCtrl;

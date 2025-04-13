@@ -1,67 +1,72 @@
-import mongoose, { Schema } from "mongoose";
-import { appDB } from "../server/mongoDbCtrl.js";
+import mongoose, { Schema } from 'mongoose';
+import { appDB } from '../server/mongoDbCtrl.js';
 
 const userProfileSchema = new Schema(
-    {
-        name: {
-            type: String,
-            required: true,
-        },
-        email: {
-            type: String,
-            required: true,
-            unique: true,
-            lowercase: true,
-            trim: true,
-        },
-        contact: {
-            type: Number,
-            required: true
-        },
-        address: {
-            type: String,
-            required: true
-        },
-        profilePicture: {
-            type: String,
-            default: ''
-        },
-        education: {
-            degree: {
-                type: String,
-                required: true
-            },
-            institution: {
-                type: String,
-                required: true
-            },
-            fieldOfStudy: {
-                type: String,
-                required: true
-            },
-            graduationYear: {
-                type: Number,
-                required: true
-            }
-        },
-        skill: [{
-            type: String
-        }],
-        achievement: [{
-            type: String
-        }],
-        socialMediaProfile: [{
-            type: String
-        }],
-        userId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
-        }
-
+  {
+    name: {
+      type: String,
+      required: true,
     },
-    {
-        timestamps: true
-    }
-)
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
+    },
+    contact: {
+      type: Number,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    profilePicture: {
+      type: String,
+      default: '',
+    },
+    education: {
+      degree: {
+        type: String,
+        required: true,
+      },
+      institution: {
+        type: String,
+        required: true,
+      },
+      fieldOfStudy: {
+        type: String,
+        required: true,
+      },
+      graduationYear: {
+        type: Number,
+        required: true,
+      },
+    },
+    skill: [
+      {
+        type: String,
+      },
+    ],
+    achievement: [
+      {
+        type: String,
+      },
+    ],
+    socialMediaProfile: [
+      {
+        type: String,
+      },
+    ],
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-export const UserProfile = appDB.model('userProfile', userProfileSchema)
+export const UserProfile = appDB.model('userProfile', userProfileSchema);

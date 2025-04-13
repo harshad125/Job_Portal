@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router } from 'express';
 // import {
 //     deleteUser,
 //     findUsers,
@@ -13,17 +13,14 @@ import { Router } from "express";
 // } from "../controller/userController.js";
 // import { verifyJWT } from "../middlewares/auth.middleware.js";
 // import { upload } from "../middlewares/multer.middleware.js";
-import { UserCtrl } from "../controller/user/index.js";
-import authenticationCtrl from "../server/authenticationCtrl.js";
+import { UserCtrl } from '../controller/user/index.js';
+import authenticationCtrl from '../server/authenticationCtrl.js';
 
+const router = Router();
 
-const router = Router()
-
-
-
-router.get('/user/:userId',[authenticationCtrl],
-    async(req,res,next) => UserCtrl.getUserById(req,res,next)
-)
+router.get('/user/:userId', [authenticationCtrl], async (req, res, next) =>
+  UserCtrl.getUserById(req, res, next)
+);
 
 // router.route("/register").post(registerUser)
 // router.route('/login').post(loginUser)
@@ -44,4 +41,4 @@ router.get('/user/:userId',[authenticationCtrl],
 // router.route("/test").get(testGetUsers)
 // router.route("/getuser").get(getUsers)
 
-export default router
+export default router;
