@@ -3,12 +3,14 @@ import jwt from 'jsonwebtoken';
 import constants from './constants.js';
 import * as userError from './userError.js';
 import enums from './enums.js';
+import _ from 'lodash';
 
 const _generatePayload = (user) => {
   return {
     id: user.id,
     name: user.name,
     email: user.email,
+    role: user.role,
   };
 };
 
@@ -51,6 +53,21 @@ const _generateSessionToken = async (tokenType, payload) => {
   return authToken;
 };
 
+const generateRenewSessionToken = async (user, refreshToken) => {
+  return new Promise((resolve, reject) => {
+    const decodeRefreshToken = verifyJwt(refreshToken, constants.jwt.audience.refresh);
+
+    if (!_.isNil(decodeRefreshToken)) {
+      const payload = _generatePayload(user);
+      console.log(payload);
+      const sessionToken = _generateSessionToken(enums.jwtTokenType.session, payload);
+      resolve(sessionToken);
+    }
+
+    reject(new userError.UnauthorizedError(null, 'Authentication token is invalid'));
+  });
+};
+
 const generateJwtToken = async (tokenType, user) => {
   return new Promise((resolve) => {
     const payload = _generatePayload(user);
@@ -59,7 +76,7 @@ const generateJwtToken = async (tokenType, user) => {
   });
 };
 
-const verifyJwt = (token, audience, ignoreExpiration) => {
+const verifyJwt = (token, audience, ignoreExpiration = false) => {
   const jwtPublicKey = global.jwtPublicKey;
   const VerifyOption = {
     issuer: constants.jwt.issuer,
@@ -93,4 +110,10 @@ const returnHttpSuccessResponse = (res, data) => {
   return res.status(HttpStatus.OK).json({ success: true, data });
 };
 
-export default { returnHttpErrorResponse, returnHttpSuccessResponse, verifyJwt, generateJwtToken };
+export default {
+  returnHttpErrorResponse,
+  returnHttpSuccessResponse,
+  verifyJwt,
+  generateJwtToken,
+  generateRenewSessionToken,
+};

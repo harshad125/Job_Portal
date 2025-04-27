@@ -1,7 +1,7 @@
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { ApiError } from '../utils/ApiError.js';
 import { User } from '../model/user.model.js';
-import { deleteOnCloudinary, uploadOnCloudinary } from '../utils/cloudinary.js';
+import { deleteOnCloudinary, uploadOnCloudinary } from '../helper/cloudinary.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
 import generateToken from '../utils/generateToken.js';
 import { userProfile } from '../model/userProfile.model.js';

@@ -48,7 +48,7 @@ const initilization = async () => {
 
   setRoutes(app);
   tokenUtils.setTokens();
-  app.use(errorCtrl);
+  // app.use(errorCtrl);
 
   app.listen(5000, () => {
     console.log('server is running port number 5000');
