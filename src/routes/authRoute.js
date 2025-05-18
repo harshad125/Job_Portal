@@ -10,4 +10,6 @@ router.post('/auth/token/renew', [], async (req, res, next) =>
   AuthCtrl.renewSession(req, res, next)
 );
 
+router.post('/auth/otp', [], async (req, res, next) => AuthCtrl.verifyOtp(req, res, next));
+
 export default router;

@@ -110,10 +110,15 @@ const returnHttpSuccessResponse = (res, data) => {
   return res.status(HttpStatus.OK).json({ success: true, data });
 };
 
+function generateRandomDigit() {
+  return Math.floor(1000 + Math.random() * 9000);
+}
+
 export default {
   returnHttpErrorResponse,
   returnHttpSuccessResponse,
   verifyJwt,
   generateJwtToken,
   generateRenewSessionToken,
+  generateRandomDigit,
 };

@@ -12,9 +12,11 @@ import { Router } from 'express';
 //     updateUserProfilePic,
 // } from "../controller/userController.js";
 // import { verifyJWT } from "../middlewares/auth.middleware.js";
-import { upload } from '../middlewares/multer.middleware.js';
 import { UserCtrl } from '../controller/user/index.js';
 import authenticationCtrl from '../server/authenticationCtrl.js';
+import { fileUploadCtrl } from '../server/fileUploadCtrl.js';
+import enums from '../helper/enums.js';
+// import { upload } from '../middlewares/multer.middleware.js';
 
 const router = Router();
 
@@ -30,30 +32,19 @@ router.post('/user/register', [], async (req, res, next) => UserCtrl.registerUse
 
 router.post(
   '/user/profile',
-  // [
-  // authenticationCtrl,
-  upload.fields([
-    {
-      name: 'profilePicture',
-      maxCount: 1,
-    },
-  ]),
-  // ],
+  [authenticationCtrl, fileUploadCtrl(enums.fileUploadType.multiple)],
   async (req, res, next) => UserCtrl.saveUserProfile(req, res, next)
 );
 
-// router.route("/register").post(registerUser)
-// router.route('/login').post(loginUser)
-// router.route('/getalluser').get(verifyJWT, getAllUsers)
-// router.route('/getuser/:id').get(verifyJWT, getUserById)
-// router.route('/findusers').get(verifyJWT, findUsers)
-// router.route('/logout').post(verifyJWT, logoutUser)
-// router.route('/userprofile').post(upload.fields([
-//     {
-//         name: "profilePicture",
-//         maxCount: 1
-//     }
-// ]), makeUserProfile)
+router.patch('/user/update-profile', [authenticationCtrl], async (req, res, next) =>
+  UserCtrl.updateUserProfile(req, res, next)
+);
+
+router.patch(
+  '/user/avatar',
+  [authenticationCtrl, fileUploadCtrl(enums.fileUploadType.single)],
+  async (req, res, next) => UserCtrl.updatedUserProfilePic(req, res, next)
+);
 // router.route('/updateprofile').patch(verifyJWT, updateUserProfile);
 // router.route("/avatar").patch(verifyJWT, upload.single("profilePicture"), updateUserProfilePic)
 // router.route('/deleteuser/:id').delete(verifyJWT, deleteUser)

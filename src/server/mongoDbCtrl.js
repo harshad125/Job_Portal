@@ -16,7 +16,7 @@ const connectToAppDb = async () => {
     console.log(`online_hiring: Connected to App MongoDb Atlas online_hiring successfully`);
   });
 
-  mongoose.set('debug', true);
+  // mongoose.set('debug', true);
 };
 
 export { appDB, connectToAppDb };
